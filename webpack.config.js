@@ -1,26 +1,37 @@
 const path = require('path');
-  const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-  module.exports = {
-    entry: path.resolve(__dirname, 'src/index'),
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js'
+module.exports = {
+  entry: path.resolve(__dirname, 'src/index'),
+  // The output property tells Webpack where to put our bundled code
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  // resolve property allows us to specify which extensions Webpack will resolve
+  resolve: { extensions: ["*", ".js", ".jsx"] },
+  module: {
+    rules: [
+      {
+      test: /\.(js|jsx)$/,
+      exclude: /(node_modules)/,
+      include: path.resolve(__dirname, 'src'),
+      use: ['babel-loader']
     },
-    module: {
-      rules: [{
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        use: ['babel-loader']
-      }]
-    },
-    devServer: {
-      contentBase:  path.resolve(__dirname, 'dist'),
-      port: 3000
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "src/index.html" //source html
-      })
-    ]
-  };
+    {
+      test: /\.css$/,
+      use: ["style-loader", "css-loader"]
+    }
+  ]
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    port: 3000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/index.html" //source html
+    }),
+  ]
+};

@@ -28,6 +28,8 @@ yarn add -D webpack webpack-cli webpack-dev-server html-webpack-plugin
 
 **html-webpack-plugin** - The HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles.
 
+**style-loader, css-loader** - handle file css
+
 ## Setup Babel
 
 ```ts
@@ -45,3 +47,4 @@ yarn add -D @babel/core @babel/preset-env @babel/preset-react babel-loader
 # SOURCE
 
 https://dev.to/theenadayalan/how-to-set-up-react-js-from-scratch-without-using-create-react-app-37mk
+https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658
